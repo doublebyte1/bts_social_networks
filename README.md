@@ -17,5 +17,5 @@ ACME_org.ipynb:
 ACME_advice.ipynb:
 - Python notebook for generating the informal network graph.
 
-meetup_groups.json:
-- Meetup member groups, acquired through a request to the meetup API.
+groups.json:
+- Meetup groups satisfying a certain criteria, acquired through a request to the meetup API.

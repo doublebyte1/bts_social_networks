@@ -1,0 +1,121 @@
+{
+
+    "results": [
+        {
+            "name": "Barcelona International Expats",
+            "id": 1309654,
+            "members": 5823
+        },
+        {
+            "name": "Barcelona Casual Runners",
+            "id": 1504208,
+            "members": 6477
+        },
+        {
+            "name": "Photography in Barcelona",
+            "id": 1890621,
+            "members": 1621
+        },
+        {
+            "name": "Simplybepilates.com",
+            "id": 4111012,
+            "members": 2049
+        },
+        {
+            "name": "BCN Badminton",
+            "id": 7770382,
+            "members": 273
+        },
+        {
+            "name": "Traditional Yoga in Barcelona!",
+            "id": 8862112,
+            "members": 1525
+        },
+        {
+            "name": "Stand up Paddle Surf & Pilates - Barcelona",
+            "id": 9481872,
+            "members": 3434
+        },
+        {
+            "name": "LAUGHSTORMING - RISOTERAPIA",
+            "id": 10062982,
+            "members": 316
+        },
+        {
+            "name": "Multicultural Volleyball Barcelona 🏐❤",
+            "id": 11557492,
+            "members": 5808
+        },
+        {
+            "name": "YOGA & KALARI • Barcelona Tribe",
+            "id": 16213602,
+            "members": 1496
+        },
+        {
+            "name": "Hiking near Barcelona",
+            "id": 16693552,
+            "members": 5693
+        },
+        {
+            "name": "Barcelona Yogalinda Hot Yoga",
+            "id": 17504232,
+            "members": 367
+        },
+        {
+            "name": "Centre ball i art Artesants",
+            "id": 17815772,
+            "members": 1039
+        },
+        {
+            "name": "YO / MU    Yoga & Music Studio",
+            "id": 17896842,
+            "members": 2575
+        },
+        {
+            "name": "Learn and Play Tennis in Barcelona",
+            "id": 17999562,
+            "members": 1201
+        },
+        {
+            "name": "Pilates en Artesants",
+            "id": 18178608,
+            "members": 105
+        },
+        {
+            "name": "Nutrición Evolucionaria Barcelona Meetup",
+            "id": 18181954,
+            "members": 1101
+        },
+        {
+            "name": "Superhero Workouts",
+            "id": 18341993,
+            "members": 303
+        },
+        {
+            "name": "Clases de Danza Contemporánea",
+            "id": 18362090,
+            "members": 2429
+        },
+        {
+            "name": "Crossfit & personal training Barcelona",
+            "id": 18377294,
+            "members": 1121
+        }
+    ],
+    "meta": {
+        "next": "https://api.meetup.com/2/groups?country=es&offset=1&city=Barcelona&sign=True&format=json&lon=2.17000007629&only=id%2Cname%2Cmembers&topic=fitness&photo-host=public&page=20&radius=25.0&fields=&lat=41.4000015259&order=id&desc=false",
+        "method": "Groups",
+        "total_count": 294,
+        "link": "https://api.meetup.com/2/groups",
+        "count": 20,
+        "description": "None",
+        "lon": 2.1700000762939453,
+        "title": "Meetup Groups v2",
+        "url": "https://api.meetup.com/2/groups?country=es&offset=0&city=Barcelona&sign=True&format=json&lon=2.17000007629&only=id%2Cname%2Cmembers&topic=fitness&photo-host=public&page=20&radius=25.0&fields=&lat=41.4000015259&order=id&desc=false",
+        "signed_url": "https://api.meetup.com/2/groups?country=es&offset=0&city=Barcelona&format=json&lon=2.17000007629&only=id%2Cname%2Cmembers&topic=fitness&photo-host=public&page=20&radius=25.0&fields=&lat=41.4000015259&order=id&desc=false&sig_id=9533707&sig=6d78871289bdc8be938461f2a28115677d3d0640",
+        "id": "",
+        "updated": 1549035962000,
+        "lat": 41.400001525878906
+    }
+
+}
