@@ -36,3 +36,6 @@ directed-graph.Rdata:
 
 undirected-graph.Rdata:
 - Undirected graph data from meetup filtered dataset
+
+retweet-graph.Rdata:
+- Graph of retweets
