@@ -30,7 +30,9 @@ meetup_users.Rdata, meetup_bcn_users.Rdata:
 - Data frame containing the members of each group.
 
 users_edgelist_upper.Rdata:
-- Upper triangle of user's edge list
+
+directed-graph.Rdata:
+- Directed graph data from meetup filtered dataset
 
 undirected-graph.Rdata:
 - Undirected graph data from meetup filtered dataset
