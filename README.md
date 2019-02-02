@@ -26,5 +26,5 @@ https://github.com/PacktPublishing/R-Data-Analysis-Cookbook-Second-Edition
 groups.json, groups_bcn.json:
 - Meetup groups satisfying a certain criteria, acquired through a request to the meetup API.
 
-meetup_users.Rdata:
+meetup_users.Rdata, meetup_bcn_users.Rdata,:
 - Data frame containing the members of each group.
