@@ -17,5 +17,14 @@ ACME_org.ipynb:
 ACME_advice.ipynb:
 - Python notebook for generating the informal network graph.
 
-groups.json:
+Code and data for the meetup graph use case:
+
+rdacb.getusers.R:
+- (Modified) script for downloading meetup group members, from:
+https://github.com/PacktPublishing/R-Data-Analysis-Cookbook-Second-Edition
+
+groups.json, groups_bcn.json:
 - Meetup groups satisfying a certain criteria, acquired through a request to the meetup API.
+
+meetup_users.Rdata:
+- Data frame containing the members of each group.
