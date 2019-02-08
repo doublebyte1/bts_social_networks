@@ -39,3 +39,7 @@ undirected-graph.Rdata:
 
 retweet-graph.Rdata:
 - Graph of retweets
+
+lesmiserables.gml.zip:
+- Network representing "who appears next to whom" in the 19th century novel Les Misérables by Victor Hugo.
+https://github.com/gephi/gephi/wiki/Datasets
