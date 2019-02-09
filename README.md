@@ -44,5 +44,6 @@ miserables_result.gexf.zip:
 - Network representing "who appears next to whom" in the 19th century novel Les Misérables by Victor Hugo.
 https://seinecle.github.io/gephi-tutorials/
 
-airlines.graphml.zip:
+airlines-sample.gefx:
 - Network with airline data, representing connections between airports.
+https://raw.githubusercontent.com/gephi/gephi.github.io/master/datasets/airlines-sample.gexf
