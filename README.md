@@ -47,3 +47,9 @@ https://seinecle.github.io/gephi-tutorials/
 airlines-sample.gefx:
 - Network with airline data, representing connections between airports.
 https://raw.githubusercontent.com/gephi/gephi.github.io/master/datasets/airlines-sample.gexf
+
+twitter.Rmd:
+- R notebook of the retweet network example
+
+twitter.nb.html:
+- R HTML of the retweet network example

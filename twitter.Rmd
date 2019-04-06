@@ -1,0 +1,97 @@
+---
+title: "Twitter Networks"
+output: html_notebook
+---
+
+Load required libraries
+```{r}
+library(twitteR)
+library(igraph)
+library(dplyr)
+```
+
+Setup keys
+```{r}
+api_key <- Sys.getenv("api_key")
+api_secret <- Sys.getenv("api_secret")
+access_token <- Sys.getenv("access_token")
+access_token_secret <- Sys.getenv("access_token_secret")
+```
+
+Setup connection
+```{r}
+setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
+```
+
+Search for a keyword
+```{r}
+alltweets <- searchTwitter("brexitvote", n = 1500)
+alltweets <- twListToDF(alltweets)
+tweets <- alltweets[1:500,]
+```
+
+Split tweets into two sets: the original tweets and the retweets
+We are just interested in the retweet network.
+```{r}
+split_point = split(tweets, tweets$isRetweet)
+```
+
+Create new variable with the retweet sender
+```{r}
+reTweets = mutate(split_point[['TRUE']], sender = substr(text, 5, regexpr(':', text) - 1))
+```
+
+Create edge list of the retweet network
+```{r}
+edge_list = as.data.frame(cbind(sender = tolower(reTweets$sender), receiver = tolower(reTweets$screenName)))
+```
+
+Add weight to the edges, based on the number of ocurrences
+```{r}
+edge_list = count(edge_list, sender, receiver)
+```
+
+Construct a directed graph from the edge list
+```{r}
+reTweets_graph <- graph_from_data_frame(d=edge_list, directed=T)
+```
+
+Plot retweet network
+```{r}
+par(bg="white", mar=c(1,1,1,1))
+plot(reTweets_graph, 
+     vertex.color="blue",
+     vertex.size=(degree(reTweets_graph, mode = "in")), #sized by in-degree centrality
+     vertex.label = NA,
+     edge.arrow.size=0.8,
+     edge.arrow.width=0.5,
+     edge.width=edge_attr(reTweets_graph)$n/10, #sized by edge weight
+     edge.color=hsv(h=.95, s=1, v=.7, alpha=0.5))
+title("Retweet Network", cex.main=1, col.main="black")
+```
+
+By looking at the clusters, we can identify "idea"" communities.
+With the in-node degree, we are also able to identify influence.
+
+Force layouts are a class of algorithms for drawing graphs in an aesthetically-pleasing way.
+They consider a force between any two nodes and determines which direction a node should move based on the sum of the force vectors.
+
+```{r}
+par(bg="white", mar=c(1,1,1,1))
+plot(reTweets_graph, layout=layout.fruchterman.reingold,
+     vertex.color="blue",
+     vertex.size=(degree(reTweets_graph, mode = "in")), #sized by in-degree centrality
+     vertex.label = NA,
+     edge.arrow.size=0.8,
+     edge.arrow.width=0.5,
+     edge.width=edge_attr(reTweets_graph)$n/10, #sized by edge weight
+     edge.color=hsv(h=.95, s=1, v=.7, alpha=0.5))
+title("Retweet Network", cex.main=1, col.main="black")
+
+```
+
+A note about large networks:
+General force algorithms can be slow for large networks.
+Force Atlas 2 attempts to resolve the shortcomings of the Force algorithm by making a balance between the quality of the final layout and the speed of the computation algorithm.
+
+https://github.com/analyxcompany/ForceAtlas2
