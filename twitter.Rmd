@@ -1,16 +1,39 @@
 ---
-title: "Twitter Networks"
+title: "Retweet Networks"
 output: html_notebook
 ---
 
-Load required libraries
+## Concepts
+### Retweets
+On Twitter a user can retweet the tweets posted by other users. By doing this, the user **creates another tweet with the exact same content as the original, with an additional attribution to the original tweet**. This way, the information about the original author of the tweet is preserved. 
+
+Note that the **original tweet is always attributed in a retweet**, eliminating the possibility of retweeting a retweet. When a user retweets a tweet, it is distributed to all her/his followers, just as if it were an originally authored tweet. 
+
+Users retweet content that they find interesting or agreeable. Retweets have been analyzed in the context of information spreading and cascade formation. Additionally, retweets have been analyzed as a form of influence.
+
+### Communities
+A community can be defined as a group of users that interact with each other more frequently than
+with those outside the group and are more similar to each other than to those outside the group.
+
+### Degree centrality
+Degree centrality is a measure of influence in the network. In degree centrality measure the number of incoming links on a directed graph. In the context of retweets, a high in degree centrality means that a user is retweeting a lot.
+
+## Analysis
+
+### Load required libraries
+
 ```{r}
 library(twitteR)
 library(igraph)
 library(dplyr)
 ```
 
-Setup keys
+### Setup keys
+
+Here I am retrieving the keys from an environmental file, on : ~/.Renviron
+
+https://csgillespie.github.io/efficientR/3-3-r-startup.html#renviron
+
 ```{r}
 api_key <- Sys.getenv("api_key")
 api_secret <- Sys.getenv("api_secret")
@@ -18,45 +41,64 @@ access_token <- Sys.getenv("access_token")
 access_token_secret <- Sys.getenv("access_token_secret")
 ```
 
-Setup connection
+### Setup connection
+
 ```{r}
 setup_twitter_oauth(api_key, api_secret, access_token, access_token_secret)
 ```
 
-Search for a keyword
+### Search for a keyword in real-time 
+
+Depending on your choice of keywords, this may take a while.
+
+https://www.rdocumentation.org/packages/twitteR/versions/1.1.9/topics/searchTwitter
+
 ```{r}
 alltweets <- searchTwitter("brexitvote", n = 1500)
 alltweets <- twListToDF(alltweets)
 tweets <- alltweets[1:500,]
 ```
 
-Split tweets into two sets: the original tweets and the retweets
-We are just interested in the retweet network.
+### Split data frame
+
+Split tweets into two sets: the original tweets and the **retweets**.
+
+In this example we are only interested in the retweet network.
+
 ```{r}
 split_point = split(tweets, tweets$isRetweet)
 ```
 
-Create new variable with the retweet sender
+### Create graph
+
+Create new variable with the retweet sender.
+
 ```{r}
 reTweets = mutate(split_point[['TRUE']], sender = substr(text, 5, regexpr(':', text) - 1))
 ```
 
-Create edge list of the retweet network
+Create edge list of the retweet network.
+
 ```{r}
 edge_list = as.data.frame(cbind(sender = tolower(reTweets$sender), receiver = tolower(reTweets$screenName)))
 ```
 
-Add weight to the edges, based on the number of ocurrences
+Add weight to the edges, based on the frequency.
+
 ```{r}
 edge_list = count(edge_list, sender, receiver)
 ```
 
-Construct a directed graph from the edge list
+Construct a directed graph from the edge list.
+
 ```{r}
 reTweets_graph <- graph_from_data_frame(d=edge_list, directed=T)
 ```
 
-Plot retweet network
+### Plot graph
+
+Plot retweet network.
+
 ```{r}
 par(bg="white", mar=c(1,1,1,1))
 plot(reTweets_graph, 
@@ -76,6 +118,8 @@ With the in-node degree, we are also able to identify influence.
 Force layouts are a class of algorithms for drawing graphs in an aesthetically-pleasing way.
 They consider a force between any two nodes and determines which direction a node should move based on the sum of the force vectors.
 
+Plot graph using a force layout.
+
 ```{r}
 par(bg="white", mar=c(1,1,1,1))
 plot(reTweets_graph, layout=layout.fruchterman.reingold,
@@ -90,8 +134,10 @@ title("Retweet Network", cex.main=1, col.main="black")
 
 ```
 
-A note about large networks:
+**A note about large networks:**
+
 General force algorithms can be slow for large networks.
+
 Force Atlas 2 attempts to resolve the shortcomings of the Force algorithm by making a balance between the quality of the final layout and the speed of the computation algorithm.
 
 https://github.com/analyxcompany/ForceAtlas2
